@@ -1,0 +1,143 @@
+/**
+ * AYS CRM — Database Type Definitions
+ * Follows Supabase generated-types shape (Row / Insert / Update per table).
+ *
+ * Application-layer invariant:
+ *   When inserting a project, always resolve the 'New Lead' pipeline_stage_id
+ *   and set it explicitly. Projects with NULL pipeline_stage_id are invisible
+ *   in the pipeline board (Phase 3).
+ */
+
+export type ClientSource = 'website' | 'direct' | 'referral' | 'whatsapp' | 'other'
+
+// ------------------------------------------------------------------
+// pipeline_stages
+// ------------------------------------------------------------------
+export interface PipelineStageRow {
+  id: string
+  name: string
+  sort_order: number
+  color: string
+  created_at: string
+}
+
+export interface PipelineStageInsert {
+  id?: string
+  name: string
+  sort_order: number
+  color?: string
+  created_at?: string
+}
+
+export type PipelineStageUpdate = Partial<PipelineStageInsert>
+
+// ------------------------------------------------------------------
+// clients
+// ------------------------------------------------------------------
+export interface ClientRow {
+  id: string
+  name: string
+  phone: string | null
+  email: string | null
+  source: ClientSource
+  created_at: string
+  updated_at: string
+}
+
+export interface ClientInsert {
+  id?: string
+  name: string
+  phone?: string | null
+  email?: string | null
+  source?: ClientSource
+  created_at?: string
+  updated_at?: string
+}
+
+export type ClientUpdate = Partial<ClientInsert>
+
+// ------------------------------------------------------------------
+// projects
+// ------------------------------------------------------------------
+export interface ProjectRow {
+  id: string
+  client_id: string
+  title: string
+  event_date: string | null
+  pipeline_stage_id: string | null
+  next_action: string | null
+  next_action_due_at: string | null
+  created_at: string
+  updated_at: string
+}
+
+export interface ProjectInsert {
+  id?: string
+  client_id: string
+  title: string
+  event_date?: string | null
+  pipeline_stage_id?: string | null
+  next_action?: string | null
+  next_action_due_at?: string | null
+  created_at?: string
+  updated_at?: string
+}
+
+export type ProjectUpdate = Partial<ProjectInsert>
+
+// ------------------------------------------------------------------
+// notes
+// project_id IS NULL  → general client note
+// project_id NOT NULL → project-specific note
+// ------------------------------------------------------------------
+export interface NoteRow {
+  id: string
+  client_id: string
+  project_id: string | null
+  content: string
+  created_by: string | null
+  created_at: string
+  updated_at: string
+}
+
+export interface NoteInsert {
+  id?: string
+  client_id: string
+  project_id?: string | null
+  content: string
+  created_by?: string | null
+  created_at?: string
+  updated_at?: string
+}
+
+export type NoteUpdate = Partial<NoteInsert>
+
+// ------------------------------------------------------------------
+// Supabase Database shape (compatible with createClient<Database>())
+// ------------------------------------------------------------------
+export type Database = {
+  public: {
+    Tables: {
+      pipeline_stages: {
+        Row: PipelineStageRow
+        Insert: PipelineStageInsert
+        Update: PipelineStageUpdate
+      }
+      clients: {
+        Row: ClientRow
+        Insert: ClientInsert
+        Update: ClientUpdate
+      }
+      projects: {
+        Row: ProjectRow
+        Insert: ProjectInsert
+        Update: ProjectUpdate
+      }
+      notes: {
+        Row: NoteRow
+        Insert: NoteInsert
+        Update: NoteUpdate
+      }
+    }
+  }
+}
