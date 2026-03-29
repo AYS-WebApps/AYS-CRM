@@ -133,6 +133,56 @@ export interface NoteInsert {
 export type NoteUpdate = Partial<NoteInsert>
 
 // ------------------------------------------------------------------
+// gmail_credentials
+// One active row — stores the connected Gmail account's OAuth tokens.
+// On reconnect: delete all rows, insert fresh.
+// NOTE: Tokens stored as plaintext; Supabase encrypts at rest (AES-256).
+//       Accepted risk for v0.1 internal tool.
+// ------------------------------------------------------------------
+export interface GmailCredentialRow {
+  id: string
+  email: string
+  access_token: string
+  refresh_token: string
+  token_expiry: string
+  created_at: string
+  updated_at: string
+}
+
+export interface GmailCredentialInsert {
+  id?: string
+  email: string
+  access_token: string
+  refresh_token: string
+  token_expiry: string
+  created_at?: string
+  updated_at?: string
+}
+
+export type GmailCredentialUpdate = Partial<GmailCredentialInsert>
+
+// ------------------------------------------------------------------
+// gmail_processed_messages
+// Deduplication table — records Gmail message IDs that have been
+// turned into leads to prevent re-processing on subsequent polls.
+// ------------------------------------------------------------------
+export interface GmailProcessedMessageRow {
+  id: string
+  gmail_message_id: string
+  client_id: string | null
+  processed_at: string
+}
+
+export interface GmailProcessedMessageInsert {
+  id?: string
+  gmail_message_id: string
+  client_id?: string | null
+  processed_at?: string
+}
+
+export type GmailProcessedMessageUpdate = Partial<GmailProcessedMessageInsert>
+
+// ------------------------------------------------------------------
 // Supabase Database shape (compatible with createClient<Database>())
 // ------------------------------------------------------------------
 export type Database = {
@@ -157,6 +207,16 @@ export type Database = {
         Row: NoteRow
         Insert: NoteInsert
         Update: NoteUpdate
+      }
+      gmail_credentials: {
+        Row: GmailCredentialRow
+        Insert: GmailCredentialInsert
+        Update: GmailCredentialUpdate
+      }
+      gmail_processed_messages: {
+        Row: GmailProcessedMessageRow
+        Insert: GmailProcessedMessageInsert
+        Update: GmailProcessedMessageUpdate
       }
     }
   }

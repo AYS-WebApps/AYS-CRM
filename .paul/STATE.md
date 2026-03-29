@@ -10,21 +10,21 @@ See: .paul/PROJECT.md (updated 2026-03-28)
 ## Current Position
 
 Milestone: v0.1 Initial Release
-Phase: 5 of 6 (Gmail Auto-Capture) — Not started
-Plan: Not started
-Status: Ready to plan
-Last activity: 2026-03-29 — Phase 4 complete, transitioned to Phase 5
+Phase: 5 of 6 (Gmail Auto-Capture) — In progress
+Plan: 05-01 (Gmail OAuth2 + Settings UI) — Audited, ready to apply
+Status: PLAN + AUDIT complete
+Last activity: 2026-03-29 — 05-01 audited, 3 must-have + 1 strongly-recommended fixes applied
 
 Progress:
 - Milestone: [██████░░░░] 67%
-- Phase 5: [░░░░░░░░░░] 0%
+- Phase 5: [██░░░░░░░░] 20%
 
 ## Loop Position
 
 Current loop state:
 ```
 PLAN ──▶ APPLY ──▶ UNIFY
-  ✓        ✓        ✓     [Phase 4 complete — ready for /paul:plan Phase 5]
+  ✓        ○        ○     [05-01 planned — run /paul:audit or /paul:apply]
 ```
 
 ## Accumulated Context
@@ -64,9 +64,9 @@ Branch: master
 ## Session Continuity
 
 Last session: 2026-03-29
-Stopped at: Phase 4 complete, all 1 plan unified
-Next action: /paul:plan for Phase 5 (Gmail Auto-Capture)
-Resume file: .paul/ROADMAP.md
+Stopped at: 05-01 audited — CSRF fix, auth gate, error message, loading skeleton applied
+Next action: /paul:apply for 05-01
+Resume file: .paul/phases/05-gmail-auto-capture/05-01-PLAN.md
 
 ---
 *STATE.md — Updated after every significant action*

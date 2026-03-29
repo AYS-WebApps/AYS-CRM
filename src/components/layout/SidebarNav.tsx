@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 const navItems = [
   { label: 'Dashboard', href: '/dashboard' },
   { label: 'Clients', href: '/dashboard/clients' },
+  { label: 'Settings', href: '/dashboard/settings' },
 ]
 
 export default function SidebarNav({ alertCount }: { alertCount: number }) {
