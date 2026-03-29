@@ -8,7 +8,7 @@ Building a CRM from scratch for a Tent & Event Rentals business. The journey sta
 
 **v0.1 Initial Release** (v0.1.0)
 Status: In progress
-Phases: 3 of 6 complete
+Phases: 4 of 6 complete
 
 ## Phases
 
@@ -17,7 +17,7 @@ Phases: 3 of 6 complete
 | 1 | Foundation | 2 | ✅ Complete | 2026-03-28 |
 | 2 | Client & Lead Management | 2 | ✅ Complete | 2026-03-28 |
 | 3 | Pipeline & Next-Action Notifications | 2 | ✅ Complete | 2026-03-29 |
-| 4 | Notes System | TBD | Not started | - |
+| 4 | Notes System | 1 | ✅ Complete | 2026-03-29 |
 | 5 | Gmail Auto-Capture | TBD | Not started | - |
 | 6 | WhatsApp Integration | TBD | Not started | - |
 
@@ -84,7 +84,8 @@ Phases: 3 of 6 complete
 - Per-event notes (event date, event type, notes)
 - Notes history (chronological, author + timestamp)
 
-**Plans:** TBD during planning
+**Plans:**
+- [x] 04-01: Notes System (general client notes + per-project notes, add/delete, inline confirmation)
 
 ### Phase 5: Gmail Auto-Capture
 

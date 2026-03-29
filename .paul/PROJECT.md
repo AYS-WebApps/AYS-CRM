@@ -26,13 +26,15 @@ The AYS team can track every lead and client through the pipeline, know exactly 
 - ✓ Client & Lead Management — list, search, create, view, edit, delete clients with source tagging — Phase 2
 - ✓ Pipeline Tracking — stages per project, create/edit/delete projects from client detail — Phase 3
 - ✓ Next-Action Notifications — Alerts page, sidebar badge, dashboard "Needs Attention" card with overdue highlighting — Phase 3
+- ✓ Notes System — general client notes (after client info) + per-project notes (inside each project card), append-only — Phase 4
 
 ### Active (In Progress)
 
-- [ ] Notes System — general client notes + project-specific notes (supports repeat clients with multiple events)
+- [ ] Gmail Auto-Capture — read "Quote Requests" folder, extract name/phone/email/message, create lead automatically
 
 ### Planned (Next)
 
+- [ ] Website Source Tagging — tag auto-captured leads as "Website" source (part of Gmail integration)
 - [ ] Gmail Auto-Capture — read "Quote Requests" folder, extract name/phone/email/message, create lead automatically
 - [ ] Website Source Tagging — tag auto-captured leads as "Website" source
 - [ ] WhatsApp Alerts — notify team WhatsApp channel when a new inquiry is captured
@@ -95,6 +97,8 @@ Tent & Event Rentals business renting tents, dance floors, stages, lighting, tab
 | Pipeline: projects model (not per-client) | Clients can have many projects; pipeline stage is per-project | 2026-03-29 | Active |
 | getAlertCount returns 0 on error | Used in layout — badge failure must not crash all dashboard pages | 2026-03-29 | Active |
 | Sidebar badge = overdue only; alerts page = all with due date | Urgency vs. planning are different views | 2026-03-29 | Active |
+| notes.created_by stores user UUID, not email | DB column is UUID FK to auth.users — email string causes type error | 2026-03-29 | Active |
+| Notes are append-only (add + delete, no edit) | Simpler; preserves history; sufficient for v0.1 | 2026-03-29 | Active |
 
 ## Success Metrics
 
@@ -103,6 +107,7 @@ Tent & Event Rentals business renting tents, dance floors, stages, lighting, tab
 | Leads captured from website without manual entry | 100% | 0% | Not started |
 | Team notified of new inquiries via WhatsApp | < 2 min delay | — | Not started |
 | Pipeline visibility for all active clients | 100% | 100% | ✅ Done (Phase 3) |
+| Notes on clients and projects | 100% | 100% | ✅ Done (Phase 4) |
 
 ## Tech Stack
 
@@ -125,4 +130,4 @@ Tent & Event Rentals business renting tents, dance floors, stages, lighting, tab
 
 ---
 *PROJECT.md — Updated when requirements or context change*
-*Last updated: 2026-03-29 after Phase 3*
+*Last updated: 2026-03-29 after Phase 4*
