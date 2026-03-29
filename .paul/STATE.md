@@ -5,26 +5,26 @@
 See: .paul/PROJECT.md (updated 2026-03-28)
 
 **Core value:** The AYS team can track every lead and client through the pipeline, know exactly what needs to happen next, and never miss a new inquiry — whether it comes from the website, email, or WhatsApp.
-**Current focus:** Phase 2 — Client & Lead Management
+**Current focus:** Phase 4 — Notes System
 
 ## Current Position
 
 Milestone: v0.1 Initial Release
-Phase: 2 of 6 (Client & Lead Management) — Not started
+Phase: 4 of 6 (Notes System) — Not started
 Plan: Not started
-Status: Ready to plan Phase 2
-Last activity: 2026-03-28 — Phase 1 complete. Auth + database schema shipped and verified.
+Status: Ready to plan
+Last activity: 2026-03-29 — Phase 3 complete, transitioned to Phase 4
 
 Progress:
-- Milestone: [██░░░░░░░░] 17%
-- Phase 2: [░░░░░░░░░░] 0%
+- Milestone: [█████░░░░░] 50%
+- Phase 4: [░░░░░░░░░░] 0%
 
 ## Loop Position
 
 Current loop state:
 ```
 PLAN ──▶ APPLY ──▶ UNIFY
-  ○        ○        ○     [Ready to plan Phase 2]
+  ✓        ✓        ✓     [Phase 3 complete — ready for /paul:plan Phase 4]
 ```
 
 ## Accumulated Context
@@ -39,24 +39,33 @@ PLAN ──▶ APPLY ──▶ UNIFY
 - Hard CASCADE deletes for v0.1 — no soft deletes
 - Team-wide RLS (USING true) — no per-user isolation in v0.1
 - **App invariant:** New projects MUST always set `pipeline_stage_id` to 'New Lead' stage UUID at insert time
+- **Server action naming:** Use domain verb to avoid import collision (addClient not createClient)
+- **Active nav style:** sky-100/sky-700 (not gray — too subtle on white sidebar)
+- **revalidatePath scope:** Always revalidate both mutated route AND parent dashboard route
+- **Single-row queries:** Use `.maybeSingle()` not `.single()` — avoids fragile PGRST116 error code check
+- **Post-mutation refresh:** Call `router.refresh()` after update actions so Server Component re-fetches props
+- **Deep-link UI state:** Use searchParams (e.g. `?edit=1`) + `initialMode` prop for URL-driven component state
+- **Update guard:** Always `.select('id')` on update calls to detect 0-row no-ops (stale session protection)
 
 ### Deferred Issues
 - CSP headers — requires content inventory; address before production deploy
 - Soft deletes — hard CASCADE accepted for v0.1; address before multi-user version
 - `updated_by` on notes — v2 concern
 - Schema migration versioning (Supabase CLI) — address at Phase 5+ when schema complexity increases
+- Delete warning for cascade effects — needs "will also delete N projects/notes" before Phase 3/4 ship data
 
 ### Blockers/Concerns
 None.
 
 ### Git State
-No git repo initialized yet — run `git init` before Phase 2.
+Last commit: (after phase 3 commit)
+Branch: master
 
 ## Session Continuity
 
-Last session: 2026-03-28
-Stopped at: Phase 1 complete (both plans unified)
-Next action: Run /paul:plan for Phase 2 (Client & Lead Management)
+Last session: 2026-03-29
+Stopped at: Phase 3 complete, all 2 plans unified
+Next action: /paul:plan for Phase 4 (Notes System)
 Resume file: .paul/ROADMAP.md
 
 ---

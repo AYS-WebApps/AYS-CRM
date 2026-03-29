@@ -85,6 +85,26 @@ export interface ProjectInsert {
 
 export type ProjectUpdate = Partial<ProjectInsert>
 
+// Project joined with its pipeline stage (used in list/detail queries)
+// Matches Supabase select('*, pipeline_stages(name, color)') shape
+export interface ProjectWithStage extends ProjectRow {
+  pipeline_stages: Pick<PipelineStageRow, 'name' | 'color'> | null
+}
+
+// Project joined with pipeline stage + client — for the alerts/next-action view
+// next_action and next_action_due_at are non-nullable here (filtered at query time)
+// clients is non-nullable due to FK constraint (every project has a client)
+export interface AlertProject {
+  id: string
+  client_id: string
+  title: string
+  next_action: string
+  next_action_due_at: string
+  pipeline_stage_id: string | null
+  pipeline_stages: Pick<PipelineStageRow, 'name' | 'color'> | null
+  clients: Pick<ClientRow, 'id' | 'name'>
+}
+
 // ------------------------------------------------------------------
 // notes
 // project_id IS NULL  → general client note

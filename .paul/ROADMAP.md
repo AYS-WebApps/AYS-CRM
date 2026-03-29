@@ -8,15 +8,15 @@ Building a CRM from scratch for a Tent & Event Rentals business. The journey sta
 
 **v0.1 Initial Release** (v0.1.0)
 Status: In progress
-Phases: 1 of 6 complete
+Phases: 3 of 6 complete
 
 ## Phases
 
 | Phase | Name | Plans | Status | Completed |
 |-------|------|-------|--------|-----------|
 | 1 | Foundation | 2 | ✅ Complete | 2026-03-28 |
-| 2 | Client & Lead Management | TBD | Not started | - |
-| 3 | Pipeline & Next-Action Notifications | TBD | Not started | - |
+| 2 | Client & Lead Management | 2 | ✅ Complete | 2026-03-28 |
+| 3 | Pipeline & Next-Action Notifications | 2 | ✅ Complete | 2026-03-29 |
 | 4 | Notes System | TBD | Not started | - |
 | 5 | Gmail Auto-Capture | TBD | Not started | - |
 | 6 | WhatsApp Integration | TBD | Not started | - |
@@ -52,7 +52,9 @@ Phases: 1 of 6 complete
 - Client detail page (profile view)
 - Lead source tags (Website, Direct, Referral, etc.)
 
-**Plans:** TBD during planning
+**Plans:**
+- [x] 02-01: Client List + Create (list page, search, empty state, add modal, source badges, sidebar nav)
+- [x] 02-02: Client Detail + Edit + Delete (detail page, inline edit, delete confirmation, clickable list rows)
 
 ### Phase 3: Pipeline & Next-Action Notifications
 
@@ -66,7 +68,9 @@ Phases: 1 of 6 complete
 - Notification badge / alert view showing clients needing attention
 - Dashboard summary of pipeline status
 
-**Plans:** TBD during planning
+**Plans:**
+- [x] 03-01: Project CRUD on Client Detail (create/edit/delete projects, pipeline stage selector, next-action fields)
+- [x] 03-02: Dashboard Pipeline Summary + Alerts (alerts page, Needs Attention card, sidebar badge, pipeline overview)
 
 ### Phase 4: Notes System
 
@@ -117,4 +121,4 @@ Phases: 1 of 6 complete
 
 ---
 *Roadmap created: 2026-03-24*
-*Last updated: 2026-03-24*
+*Last updated: 2026-03-29*

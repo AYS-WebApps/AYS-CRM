@@ -14,7 +14,7 @@ The AYS team can track every lead and client through the pipeline, know exactly 
 |-----------|-------|
 | Version | 0.1.0 |
 | Status | In Development |
-| Last Updated | 2026-03-28 |
+| Last Updated | 2026-03-28 (Phase 2 complete) |
 
 ## Requirements
 
@@ -23,16 +23,16 @@ The AYS team can track every lead and client through the pipeline, know exactly 
 - ✓ Authentication — email/password login, protected routes, logout — Phase 1
 - ✓ Database Schema — clients, projects, notes, pipeline_stages tables with RLS and indexes — Phase 1
 - ✓ Pipeline Stage Definitions — New Lead, Contacted, Quoted, Confirmed, Completed, Cancelled — Phase 1
+- ✓ Client & Lead Management — list, search, create, view, edit, delete clients with source tagging — Phase 2
+- ✓ Pipeline Tracking — stages per project, create/edit/delete projects from client detail — Phase 3
+- ✓ Next-Action Notifications — Alerts page, sidebar badge, dashboard "Needs Attention" card with overdue highlighting — Phase 3
 
 ### Active (In Progress)
 
-- [ ] Client & Lead Management — store name, phone, email; create/edit profiles
-- [ ] Pipeline Tracking — stages per project with per-client status
-- [ ] Next-Action Notifications — alert the team on what needs to be done for a specific client
+- [ ] Notes System — general client notes + project-specific notes (supports repeat clients with multiple events)
 
 ### Planned (Next)
 
-- [ ] Notes System — general client notes + project-specific notes (supports repeat clients with multiple events)
 - [ ] Gmail Auto-Capture — read "Quote Requests" folder, extract name/phone/email/message, create lead automatically
 - [ ] Website Source Tagging — tag auto-captured leads as "Website" source
 - [ ] WhatsApp Alerts — notify team WhatsApp channel when a new inquiry is captured
@@ -92,6 +92,9 @@ Tent & Event Rentals business renting tents, dance floors, stages, lighting, tab
 | Hard CASCADE deletes for v0.1 | Simpler; team-controlled access; address before multi-user | 2026-03-28 | Active |
 | Team-wide RLS (USING true) | No per-user isolation needed for v0.1 internal tool | 2026-03-28 | Active |
 | Email confirmation disabled in Supabase | Admin-created users only; no self-registration | 2026-03-28 | Active |
+| Pipeline: projects model (not per-client) | Clients can have many projects; pipeline stage is per-project | 2026-03-29 | Active |
+| getAlertCount returns 0 on error | Used in layout — badge failure must not crash all dashboard pages | 2026-03-29 | Active |
+| Sidebar badge = overdue only; alerts page = all with due date | Urgency vs. planning are different views | 2026-03-29 | Active |
 
 ## Success Metrics
 
@@ -99,7 +102,7 @@ Tent & Event Rentals business renting tents, dance floors, stages, lighting, tab
 |--------|--------|---------|--------|
 | Leads captured from website without manual entry | 100% | 0% | Not started |
 | Team notified of new inquiries via WhatsApp | < 2 min delay | — | Not started |
-| Pipeline visibility for all active clients | 100% | 0% | Not started |
+| Pipeline visibility for all active clients | 100% | 100% | ✅ Done (Phase 3) |
 
 ## Tech Stack
 
@@ -122,4 +125,4 @@ Tent & Event Rentals business renting tents, dance floors, stages, lighting, tab
 
 ---
 *PROJECT.md — Updated when requirements or context change*
-*Last updated: 2026-03-28 after Phase 1*
+*Last updated: 2026-03-29 after Phase 3*

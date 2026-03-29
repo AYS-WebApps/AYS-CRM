@@ -1,10 +1,14 @@
 import { logout } from '@/app/(auth)/login/actions'
+import SidebarNav from '@/components/layout/SidebarNav'
+import { getAlertCount } from './alerts/actions'
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const alertCount = await getAlertCount()
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Top Navigation */}
@@ -23,16 +27,8 @@ export default function DashboardLayout({
       </header>
 
       <div className="flex">
-        {/* Sidebar placeholder — navigation items added in Phase 2 */}
         <aside className="w-56 min-h-[calc(100vh-3.5rem)] bg-white border-r border-gray-200 p-4">
-          <nav className="space-y-1">
-            <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide px-3 mb-2">
-              Menu
-            </p>
-            <div className="text-sm text-gray-400 px-3 py-2">
-              Navigation coming in Phase 2
-            </div>
-          </nav>
+          <SidebarNav alertCount={alertCount} />
         </aside>
 
         {/* Main content */}
