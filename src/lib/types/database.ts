@@ -118,6 +118,8 @@ export interface NoteRow {
   project_id: string | null
   content: string
   created_by: string | null
+  created_by_email: string | null
+  updated_by_email: string | null
   created_at: string
   updated_at: string
 }
@@ -128,6 +130,8 @@ export interface NoteInsert {
   project_id?: string | null
   content: string
   created_by?: string | null
+  created_by_email?: string | null
+  updated_by_email?: string | null
   created_at?: string
   updated_at?: string
 }

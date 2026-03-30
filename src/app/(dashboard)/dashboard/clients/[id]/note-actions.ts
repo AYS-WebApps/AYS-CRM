@@ -49,10 +49,45 @@ export async function addNote(
     client_id: clientId,
     project_id: projectId,
     content: content.trim(),
-    created_by: user?.id ?? null, // UUID FK to auth.users — not email
+    created_by: user?.id ?? null,
+    created_by_email: user?.email ?? null,
   })
 
   if (error) return { error: 'Failed to add note. Please try again.' }
+
+  revalidatePath('/dashboard/clients/' + clientId)
+  return { success: true }
+}
+
+export async function updateNote(
+  noteId: string,
+  clientId: string,
+  content: string
+): Promise<{ success: true } | { error: string }> {
+  if (!content.trim()) {
+    return { error: 'Note cannot be empty.' }
+  }
+  if (content.trim().length > 2000) {
+    return { error: 'Note must be 2000 characters or fewer.' }
+  }
+
+  const supabase = await createClient()
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  // Dual-key update: prevents editing notes from other clients
+  const { error } = await supabase
+    .from('notes')
+    .update({
+      content: content.trim(),
+      updated_by_email: user?.email ?? null,
+    })
+    .eq('id', noteId)
+    .eq('client_id', clientId)
+
+  if (error) return { error: 'Failed to update note. Please try again.' }
 
   revalidatePath('/dashboard/clients/' + clientId)
   return { success: true }
