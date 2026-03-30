@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient as createSupabaseClient } from '@supabase/supabase-js'
-import type { Database } from '@/lib/types'
 
 // Runs daily via Vercel Cron.
 // Finds all "Signed" projects whose event_date has passed and marks them "Completed".
@@ -11,16 +10,20 @@ export async function GET(req: NextRequest) {
   }
 
   // Direct client (no cookie auth needed — this is a server-to-server cron call)
-  const supabase = createSupabaseClient<Database>(
+  // No generic type: our custom Database type doesn't match supabase-js's expected schema format
+  const supabase = createSupabaseClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   )
 
   // Resolve stage IDs
-  const [{ data: signedStage }, { data: completedStage }] = await Promise.all([
+  const [signedResult, completedResult] = await Promise.all([
     supabase.from('pipeline_stages').select('id').ilike('name', 'Signed').maybeSingle(),
     supabase.from('pipeline_stages').select('id').ilike('name', 'Completed').maybeSingle(),
   ])
+
+  const signedStage = signedResult.data as { id: string } | null
+  const completedStage = completedResult.data as { id: string } | null
 
   if (!signedStage?.id || !completedStage?.id) {
     return NextResponse.json({ error: 'Pipeline stages not configured' }, { status: 500 })
