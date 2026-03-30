@@ -67,6 +67,7 @@ export interface ProjectRow {
   pipeline_stage_id: string | null
   next_action: string | null
   next_action_due_at: string | null
+  project_link: string | null
   created_at: string
   updated_at: string
 }
@@ -79,6 +80,7 @@ export interface ProjectInsert {
   pipeline_stage_id?: string | null
   next_action?: string | null
   next_action_due_at?: string | null
+  project_link?: string | null
   created_at?: string
   updated_at?: string
 }

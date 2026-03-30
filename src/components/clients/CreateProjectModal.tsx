@@ -89,7 +89,7 @@ export default function CreateProjectModal({ clientId, onClose, onCreated }: Pro
           </div>
 
           {/* Event Date */}
-          <div className="mb-5">
+          <div className="mb-4">
             <label htmlFor="event_date" className="block text-sm font-medium text-gray-700 mb-1">
               Event Date
             </label>
@@ -97,6 +97,20 @@ export default function CreateProjectModal({ clientId, onClose, onCreated }: Pro
               id="event_date"
               name="event_date"
               type="date"
+              className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+            />
+          </div>
+
+          {/* Project Link */}
+          <div className="mb-5">
+            <label htmlFor="project_link" className="block text-sm font-medium text-gray-700 mb-1">
+              Project Link
+            </label>
+            <input
+              id="project_link"
+              name="project_link"
+              type="url"
+              placeholder="https://"
               className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
             />
           </div>

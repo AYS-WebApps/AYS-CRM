@@ -219,7 +219,7 @@ export default function ProjectsSection({ clientId, projects, stages, notes }: P
                   </div>
 
                   {/* Next Action Due */}
-                  <div className="mb-4">
+                  <div className="mb-3">
                     <label className="block text-xs font-medium text-gray-500 mb-1">
                       Due Date
                     </label>
@@ -227,6 +227,20 @@ export default function ProjectsSection({ clientId, projects, stages, notes }: P
                       name="next_action_due_at"
                       type="date"
                       defaultValue={formatDateForInput(project.next_action_due_at)}
+                      className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                    />
+                  </div>
+
+                  {/* Project Link */}
+                  <div className="mb-4">
+                    <label className="block text-xs font-medium text-gray-500 mb-1">
+                      Project Link
+                    </label>
+                    <input
+                      name="project_link"
+                      type="url"
+                      defaultValue={project.project_link ?? ''}
+                      placeholder="https://"
                       className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
                     />
                   </div>
@@ -258,7 +272,23 @@ export default function ProjectsSection({ clientId, projects, stages, notes }: P
             <div key={project.id} className="bg-white rounded-xl border border-gray-200 p-4">
               <div className="flex items-start justify-between gap-4">
                 <div className="min-w-0 flex-1">
-                  <p className="font-medium text-gray-900 truncate">{project.title}</p>
+                  <div className="flex items-center gap-1.5">
+                    <p className="font-medium text-gray-900 truncate">{project.title}</p>
+                    {project.project_link && (
+                      <a
+                        href={project.project_link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="shrink-0 text-gray-400 hover:text-blue-600 transition-colors"
+                        title="Open project link"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                          <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                        </svg>
+                      </a>
+                    )}
+                  </div>
                   <div className="mt-2 space-y-1">
                     <div className="flex items-center gap-2">
                       <span

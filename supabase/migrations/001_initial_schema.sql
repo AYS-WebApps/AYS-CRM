@@ -71,7 +71,7 @@ INSERT INTO pipeline_stages (name, sort_order, color) VALUES
   ('New Lead',   1, '#3B82F6'),
   ('Contacted',  2, '#8B5CF6'),
   ('Quoted',     3, '#F59E0B'),
-  ('Confirmed',  4, '#10B981'),
+  ('Signed',     4, '#10B981'),
   ('Completed',  5, '#6B7280'),
   ('Cancelled',  6, '#EF4444');
 

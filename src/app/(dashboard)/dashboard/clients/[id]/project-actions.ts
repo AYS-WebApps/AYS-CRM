@@ -33,6 +33,7 @@ export async function createProject(
 ): Promise<{ success: true } | { error: string }> {
   const title = (formData.get('title') as string).trim()
   const event_date = (formData.get('event_date') as string).trim() || null
+  const project_link = (formData.get('project_link') as string).trim() || null
 
   if (!title) {
     return { error: 'Title is required.' }
@@ -56,6 +57,7 @@ export async function createProject(
     title,
     event_date: event_date || null,
     pipeline_stage_id: stage.id,
+    project_link,
   })
 
   if (error) {
@@ -77,6 +79,7 @@ export async function updateProject(
   const pipeline_stage_id = (formData.get('pipeline_stage_id') as string).trim() || null
   const next_action = (formData.get('next_action') as string).trim() || null
   const next_action_due_at = (formData.get('next_action_due_at') as string).trim() || null
+  const project_link = (formData.get('project_link') as string).trim() || null
 
   if (!title) {
     return { error: 'Title is required.' }
@@ -86,7 +89,7 @@ export async function updateProject(
 
   const { data, error } = await supabase
     .from('projects')
-    .update({ title, event_date, pipeline_stage_id, next_action, next_action_due_at })
+    .update({ title, event_date, pipeline_stage_id, next_action, next_action_due_at, project_link })
     .eq('id', projectId)
     .eq('client_id', clientId)
     .select('id')
